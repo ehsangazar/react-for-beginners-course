@@ -1,17 +1,26 @@
 import React from 'react';
 import './App.css';
-import Button from './../Button/Button'
+import Header from './../Header/Header'
+import Footer from './../Footer/Footer'
+import PRODUCTS from './PRODUCTS.json'
 
 function App() {
   return (
     <div className="App">
-      <h1 className="heading1">
-        This is the title
-      </h1>
-      <p>
-        Eiusmod excepteur cillum aliqua sunt aliquip. Ea ad voluptate veniam excepteur adipisicing adipisicing nostrud dolor deserunt ipsum nisi. Do ipsum esse irure cillum veniam commodo aute nulla anim nulla ex. Ullamco enim non deserunt aliquip eu ad Lorem voluptate adipisicing nostrud aliquip proident occaecat.
-      </p>
-      <Button />
+      <Header />
+      <ul className="products">
+        {PRODUCTS.map((item) => (
+          <li>
+            <h3>{item.name}</h3>
+            <img src={item.image} />
+            <span>Price: {item.price}</span>
+            <button>
+              Add to Cart
+            </button>
+          </li>
+        ))}
+      </ul>
+      <Footer />
     </div>
   );
 }
