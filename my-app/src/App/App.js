@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Products from '../Products/Products';
 import About from '../About/About';
+import Contact from '../Contact/Contact';
 import Layout from "../Layout/Layout";
 import PRODUCTS from "./PRODUCTS.json";
 import {
@@ -14,16 +15,19 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Layout>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
               <Products data={PRODUCTS} />
-            </Layout>
-          </Route>
-          <Route path="/about">
-            <Layout><About /></Layout>
-          </Route>
-        </Switch>
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+          </Switch>
+        </Layout>
       </BrowserRouter>
     </div>
   );
