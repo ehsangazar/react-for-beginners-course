@@ -1,64 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
+import POSTS from './POSTS.json'
+import Button from './../Button/Button'
 
-// const Blog = () => (
-//     <div>Blog</div>
-// )
-// stateless function
+const Blog = () => {
+  const [posts,setPosts] = useState([])
+  const [loading,setLoading] = useState(false)
 
-class Blog extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          clicked: 0,
-          updateNumber: 0,
-          didMount: false,
-        };
-    }
+  const handleLoadPosts = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setPosts(POSTS);
+      setLoading(false);
+    }, 1000)
+  };
 
-    componentDidMount(){
-      setTimeout(()=>{
-        this.setState({
-          didMount: true,
-        });
-        this.handleClick();
-      }, 1000)
-    }
-
-    componentDidUpdate(prevProps, prevState){
-      const { updateNumber } = this.state
-      if (updateNumber === 0) {
-        this.setState({
-          updateNumber: this.state.updateNumber + 1,
-        });
-      }
-    }
-
-    componentWillUnmount(){
-      console.log('un mount')
-    }
-
-    handleClick = () => {
-        this.setState({
-            clicked: this.state.clicked + 1,
-        })
-    }
-
-    render() {
-        const { clicked, didMount, updateNumber } = this.state;
-        return (
-          <div>
-            <h1>Blog Class</h1>
-            <p>Clicked Number: {clicked}</p>
-            <button onClick={this.handleClick}>Click</button>
-            <h1>Component Did Mount</h1>
-            <p>Is it Mounted? {didMount ? "YES" : "NO"}</p>
-            <h1>Component Did Update</h1>
-            <p>How many times is it updated? {updateNumber}</p>
-          </div>
-        );
-    }
-}
-
-
+  return (
+    <div>
+      <Button handleClick={handleLoadPosts}>
+        {loading ? 'Loading' :'Load Posts into State'}
+      </Button>
+      {posts.length === 0 && <div>No Posts</div>}
+      {posts.length > 0 && (
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <h3>{post.title}</h3>
+              <p>{post.content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 export default Blog;
