@@ -1,35 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import POSTS from './POSTS.json'
-import Button from './../Button/Button'
+import './Blog.css'
 
 const Blog = () => {
   const [posts,setPosts] = useState([])
   const [loading,setLoading] = useState(false)
-  const [loaded, setLoaded] = useState(false)
 
-  const handleLoadPosts = () => {
+  const loadPosts = async () => {
     setLoading(true)
-    setLoaded(true)
-    setTimeout(() => {
-      setPosts(POSTS);
-      setLoading(false);
-    }, 1000)
+    const responsePosts = await fetch('http://www.mocky.io/v2/5e9278be3100005b00462cbd');
+    const posts = await responsePosts.json()
+    setPosts(posts);
+    setLoading(false);
   };
 
   useEffect(() => {
-    console.log("useEffect");
-    handleLoadPosts();
-  }, []);
-
-  useEffect(() => {
-    console.log("loaded changed");
-  }, [loaded]);
+    loadPosts();
+  },[])
 
   return (
-    <div>
-      <Button handleClick={handleLoadPosts}>
-        {loading ? 'Loading' :'Load Posts into State'}
-      </Button>
+    <div className="Blog">
+      {loading && <div>Loading</div>}
       {posts.length === 0 && <div>No Posts</div>}
       {posts.length > 0 && (
         <ul>
