@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import POSTS from './POSTS.json'
 import Button from './../Button/Button'
 
 const Blog = () => {
   const [posts,setPosts] = useState([])
   const [loading,setLoading] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   const handleLoadPosts = () => {
     setLoading(true)
+    setLoaded(true)
     setTimeout(() => {
       setPosts(POSTS);
       setLoading(false);
     }, 1000)
   };
+
+  useEffect(() => {
+    console.log("useEffect");
+    handleLoadPosts();
+  }, []);
+
+  useEffect(() => {
+    console.log("loaded changed");
+  }, [loaded]);
 
   return (
     <div>
