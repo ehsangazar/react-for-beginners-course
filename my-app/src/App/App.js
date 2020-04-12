@@ -3,6 +3,7 @@ import './App.css';
 import Products from '../Products/Products';
 import About from '../About/About';
 import Contact from '../Contact/Contact';
+import Blog from '../Blog/Blog';
 import Layout from "../Layout/Layout";
 import PRODUCTS from "./PRODUCTS.json";
 import {
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/about">
               <About />
+            </Route>
+            <Route path="/blog">
+              <Blog />
             </Route>
             <Route path="/contact">
               <Contact />
