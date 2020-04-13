@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import Button from './../Button/Button'
-import Image from "./../Image/Image";
+import Button from '../Button/Button'
+import Image from "../Image/Image";
 import "./ProductItem.css";
-import ThemeContext from "../contexts/ThemeContext";
+import ThemeContext from "../../contexts/ThemeContext";
 
 const ProductItem = ({ data }) => {
   const themeValues = useContext(ThemeContext);

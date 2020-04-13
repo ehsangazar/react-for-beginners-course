@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Button from '../Button/Button'
-import './Contact'
 
 const Contact = () => {
     const [subject, setSubject] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
     const [errors,setErrors] = useState({});
+    const inputSubjectRef = useRef(null)
 
     const handleChangeInputSubject = (event) => {
       setSubject(event.target.value);
@@ -42,10 +42,15 @@ const Contact = () => {
       console.log("description", description);
     };
 
+    useEffect(()=>{
+      inputSubjectRef.current.focus();
+    }, [])
+
     return (
       <div className="Contact">
         <div className="formControl">
           <input
+            ref={inputSubjectRef}
             onChange={handleChangeInputSubject}
             type="text"
             placeholder="subject"

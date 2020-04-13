@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductItem from './../ProductItem/ProductItem'
+import ProductItem from '../ProductItem/ProductItem'
 import './Products.css'
 
 const Products = ({ data }) => {

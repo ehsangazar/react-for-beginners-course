@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Button from "./../Button/Button";
+import Button from "../Button/Button";
 import './Blog.css'
 
 const Blog = () => {

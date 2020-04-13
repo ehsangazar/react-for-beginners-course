@@ -6,8 +6,8 @@ import Contact from '../Contact/Contact';
 import Blog from '../Blog/Blog';
 import Layout from "../Layout/Layout";
 import PRODUCTS from "./PRODUCTS.json";
-import ThemeContext from '../contexts/ThemeContext'
-import themeConfig from '../configs/theme'
+import ThemeContext from '../../contexts/ThemeContext'
+import themeConfig from '../../configs/theme'
 import {
   BrowserRouter,
   Route,
