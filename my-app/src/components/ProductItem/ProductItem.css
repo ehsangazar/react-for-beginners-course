@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 .ProductItem button:hover {
-  border: 1px solid #2980b9;
-  color: #2980b9;
+  border: 1px solid #9b0d14 !important;
+  color: #9b0d14 !important;
+}
+.ProductItem button.Added {
+  border: 1px solid #9b0d14 !important;
+  color: #9b0d14 !important;
 }

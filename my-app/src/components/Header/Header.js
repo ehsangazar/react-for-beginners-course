@@ -2,6 +2,7 @@ import React from 'react'
 import './Header.css'
 import NavBar from './../NavBar/Navbar'
 import { useLocation } from 'react-router-dom'
+import { MdShoppingCart } from "react-icons/md";
 
 const Header = () => {
   let { pathname } = useLocation();
@@ -26,10 +27,16 @@ const Header = () => {
 
   return (
     <div className="Header">
-      <NavBar />
+      <div className="TopBar">
+        <NavBar />
+        <div className="Cart">
+          <h4>0</h4>
+          <MdShoppingCart />
+        </div>
+      </div>
       <h3>{title}</h3>
     </div>
-  )
+  );
 };
 
 export default Header
