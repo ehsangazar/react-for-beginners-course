@@ -8,6 +8,7 @@ const Header = () => {
   let { pathname } = useLocation();
   let title = '';
 
+
   switch (pathname) {
     case '/':
       title = 'Shop'
