@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import Button from '../Button/Button'
 import Image from "../Image/Image";
 import "./ProductItem.css";
@@ -10,7 +10,7 @@ import { MdAdd, MdRemoveShoppingCart } from "react-icons/md";
 const ProductItem = ({ data }) => {
   const themeValues = useContext(ThemeContext);
   const {carts ,dispatchCart } = useContext(CartContext);
-
+  const productItemRef = useRef(null)
   const added = carts.includes(data.id)
 
   const handleAdd = () => {
@@ -27,8 +27,12 @@ const ProductItem = ({ data }) => {
     }
   }
 
+  useEffect(()=>{
+    productItemRef.current.classList.add('visible')
+  },[])
+
   return (
-    <li className="ProductItem">
+    <li className="ProductItem" ref={productItemRef}>
       <h3>{data.name}</h3>
       <Image imgSrc={data.image} />
       <span>Price: {data.price}</span>

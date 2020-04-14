@@ -43,7 +43,7 @@ const Blog = () => {
         <>
           <ul>
             {posts.slice(3 * (activePageNumber-1), 3 * activePageNumber).map((post) => (
-              <li>
+              <li className="blogItem" key={`post-${post.id}`}>
                 <h3>{post.title}</h3>
                 <p>{post.content}</p>
               </li>
