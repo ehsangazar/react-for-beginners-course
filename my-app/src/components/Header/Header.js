@@ -10,22 +10,11 @@ const Header = () => {
   let title = '';
   const { carts } = useContext(CartContext);
 
-  switch (pathname) {
-    case '/':
-      title = 'Shop'
-      break;
-    case '/about':
-      title = 'About'
-      break;
-    case '/blog':
-      title = 'Blog'
-      break;
-    case '/contact':
-      title = 'Contact'
-      break;
-    default:
-      break;
-  }
+  if (pathname === '/') title='Shop'
+  if (pathname === "/about") title = "About";
+  if (pathname === "/blog") title = "Blog";
+  if (pathname === "/contact") title = "Contact";
+  if (pathname.includes('product')) title = "Shop";
 
   return (
     <div className="Header">

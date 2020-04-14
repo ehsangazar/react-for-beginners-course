@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import Button from '../Button/Button'
 import Image from "../Image/Image";
 import "./ProductItem.css";
+import { Link } from 'react-router-dom'
 import ThemeContext from "../../contexts/ThemeContext";
 import CartContext from "../../contexts/CartContext";
 import { MdAdd, MdRemoveShoppingCart } from "react-icons/md"; 
@@ -33,7 +34,9 @@ const ProductItem = ({ data }) => {
 
   return (
     <li className="ProductItem" ref={productItemRef}>
-      <h3>{data.name}</h3>
+      <Link to={`/product/${data.id}`}>
+        <h3>{data.name}</h3>
+      </Link>
       <Image imgSrc={data.image} />
       <span>Price: {data.price}</span>
       <Button

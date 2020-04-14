@@ -5,6 +5,7 @@ import About from '../About/About';
 import Contact from '../Contact/Contact';
 import Blog from '../Blog/Blog';
 import Layout from "../Layout/Layout";
+import SingleProduct from "../SingleProduct/SingleProduct";
 import PRODUCTS from "./PRODUCTS.json";
 import ThemeContext from '../../contexts/ThemeContext'
 import themeConfig from '../../configs/theme'
@@ -38,6 +39,9 @@ const App = () => {
               </Route>
               <Route path="/contact">
                 <Contact />
+              </Route>
+              <Route path="/product/:id">
+                <SingleProduct />
               </Route>
             </Switch>
           </Layout>
