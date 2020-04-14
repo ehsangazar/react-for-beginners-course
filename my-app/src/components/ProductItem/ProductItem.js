@@ -1,26 +1,28 @@
-import React, { useContext, useState, useReducer } from 'react'
+import React, { useContext } from 'react'
 import Button from '../Button/Button'
 import Image from "../Image/Image";
 import "./ProductItem.css";
 import ThemeContext from "../../contexts/ThemeContext";
+import CartContext from "../../contexts/CartContext";
 import { MdAdd, MdRemoveShoppingCart } from "react-icons/md"; 
-import ProductItemReducer from './ProductItem.reducer';
 
 
 const ProductItem = ({ data }) => {
   const themeValues = useContext(ThemeContext);
-  const [state,dispatch] = useReducer(ProductItemReducer,{
-    added: false,
-  })
+  const {carts ,dispatchCart } = useContext(CartContext);
+
+  const added = carts.includes(data.id)
 
   const handleAdd = () => {
-    if (state.added) {
-      dispatch({
-        type: "REMOVE_FROM_CART"
-      })
+    if (added) {
+      dispatchCart({
+        type: "REMOVE_FROM_CART",
+        id: data.id
+      });
     } else {
-      dispatch({
+      dispatchCart({
         type: "ADD_TO_CART",
+        id: data.id,
       });
     }
   }
@@ -40,7 +42,7 @@ const ProductItem = ({ data }) => {
           justifyContent: "center",
         }}
       >
-        {state.added ? (
+        {added ? (
           <>
             <MdRemoveShoppingCart />
             Remove from Cart
