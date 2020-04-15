@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Button from '../Button/Button'
+import { validateEmail, validateSubject } from '../../utils/validation'
 
 const Contact = () => {
     const [subject, setSubject] = useState('');
@@ -9,13 +10,19 @@ const Contact = () => {
     const inputSubjectRef = useRef(null)
 
     const handleChangeInputSubject = (event) => {
-      setSubject(event.target.value);
+      if (validateSubject(event.target.value)) {
+        setSubject(event.target.value);
+        setErrors({
+          ...errors,
+          subject: null,
+        });
+      } else {
+        setErrors({
+          ...errors,
+          subject: "Subject must be more than 8 characters",
+        });
+      }
     };
-
-    const validateEmail = (email) => {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    }
 
     const handleChangeInputEmail = (event) => {
         if (validateEmail(event.target.value)){
@@ -55,6 +62,7 @@ const Contact = () => {
             type="text"
             placeholder="subject"
           />
+          {errors.subject && <span>{errors.subject}</span>}
         </div>
         <div className="formControl">
           <input
@@ -62,7 +70,7 @@ const Contact = () => {
             type="email"
             placeholder="Email"
           />
-          {errors.email &&<span>{errors.email}</span>}
+          {errors.email && <span>{errors.email}</span>}
         </div>
         <div className="formControl">
           <textarea onChange={handleChangeTextArea}>Your request here</textarea>

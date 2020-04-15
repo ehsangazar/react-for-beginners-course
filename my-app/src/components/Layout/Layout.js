@@ -6,8 +6,9 @@ import CartReducer from "../../reducers/Cart"
 import './Layout.css'
 
 const Layout = ({ children }) => {
-  const [state, dispatch] = useReducer(CartReducer,{
-    carts: []
+  let carts = JSON.parse(localStorage.getItem("carts"));
+  const [state, dispatch] = useReducer(CartReducer, {
+    carts: carts,
   });
   return (
     <CartContext.Provider

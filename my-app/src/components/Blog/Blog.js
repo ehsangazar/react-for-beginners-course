@@ -20,17 +20,17 @@ const Blog = () => {
     loadPosts();
   },[])
 
-  useEffect(() => {
-    setPageCounts(calculatePageCounts());
-  },[posts])
-
-  const calculatePageCounts = () => {
-    if (posts.length % 3 > 0){
+  const calculatePageCounts = useCallback(() => {
+    if (posts.length % 3 > 0) {
       return parseInt(posts.length / 3 + 1);
     }
     return parseInt(posts.length / 3);
-  }
+  }, [posts]);
 
+  useEffect(() => {
+    setPageCounts(calculatePageCounts());
+  },[posts, calculatePageCounts])
+  
   const handleClickOnPages = useCallback((pageNumber) => {
     setActivePageNumber(pageNumber);
   },[]);
