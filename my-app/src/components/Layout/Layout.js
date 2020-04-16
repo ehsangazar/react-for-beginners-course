@@ -8,7 +8,7 @@ import './Layout.css'
 const Layout = ({ children }) => {
   let carts = JSON.parse(localStorage.getItem("carts"));
   const [state, dispatch] = useReducer(CartReducer, {
-    carts: carts,
+    carts: carts || [],
   });
   return (
     <CartContext.Provider
