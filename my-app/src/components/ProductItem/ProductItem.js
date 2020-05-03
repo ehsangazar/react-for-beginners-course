@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import ThemeContext from "../../contexts/ThemeContext";
 import CartContext from "../../contexts/CartContext";
 import { MdAdd, MdRemoveShoppingCart } from "react-icons/md"; 
-
+import { PROJECT_URL } from '../../configs/general'
 
 const ProductItem = ({ data }) => {
   const themeValues = useContext(ThemeContext);
@@ -37,7 +37,7 @@ const ProductItem = ({ data }) => {
       <Link to={`/product/${data.id}`}>
         <h3>{data.name}</h3>
       </Link>
-      <Image imgSrc={data.image} />
+      <Image imgSrc={`${PROJECT_URL}/assets/img/${data.image}`} />
       <span>Price: {data.price}</span>
       <Button
         handleClick={handleAdd}
